@@ -8,6 +8,7 @@ const options: IBundleOptions = {
     name: 'umijsHooks',
     globals: {
       react: 'React',
+      axios: 'axios',
     },
   },
   preCommit: {

@@ -25,7 +25,8 @@
     "pub:doc": "father doc build & father doc deploy"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0",
+    "axios": "0.19.2"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^1.0.4",
@@ -36,8 +37,5 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "license": "MIT",
-  "dependencies": {
-    "axios": "0.19.2"
-  }
+  "license": "MIT"
 }
