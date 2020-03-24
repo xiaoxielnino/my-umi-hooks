@@ -16,8 +16,8 @@ const options: IBundleOptions = {
     prettier: true,
   },
   doc: {
-    title: '@umijs/hooks',
-    base: '/hooks/',
+    title: 'my-umi-hooks',
+    base: '.',
   },
   extraBabelPlugins: [
     [
