@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 import { DependencyList, RefObject, useEffect, useState, useCallback, useRef } from 'react';
 import useUpdateEffect from '../useUpdateEffect';
 
-=======
-import { RefObject, useEffect, useState, useCallback, useRef, DependencyList } from 'react';
-import useUpdateEffect from '../useUpdateEffect';
-
-const noop: () => void = () => {};
-type noop = () => void;
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 export interface ReturnValue<Item> {
   loading: boolean;
   loadingMore: boolean;
   data: Item[];
-<<<<<<< HEAD
   reload: () => void;
   loadMore: () => void;
   noMore: boolean;
@@ -23,16 +14,6 @@ export interface ReturnValue<Item> {
 export interface Options<Result, Item> {
   initPageSize?: number;
   incrementSize?: number;
-=======
-  reload: noop;
-  loadMore: noop;
-  noMore: boolean;
-  total: number | undefined;
-}
-export interface Options<Result, Item> {
-  initPageSize?: number;
-  peerPageSize?: number;
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   itemKey?: string | ((record: Item, index: number) => string);
   formatResult?: (
     x: Result,
@@ -43,10 +24,7 @@ export interface Options<Result, Item> {
   ref?: RefObject<HTMLElement>;
   threshold?: number;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 export interface FnParams {
   page: number;
   pageSize: number;
@@ -60,7 +38,6 @@ export default function useLoadMore<Result = any, Item = any>(
   deps: DependencyList = [],
   options: Options<Result, Item>,
 ): ReturnValue<Item> {
-<<<<<<< HEAD
   /* 初始化值 */
   const { itemKey, initPageSize = 10, formatResult, ref, threshold = 100 } = options;
   let { incrementSize } = options;
@@ -68,11 +45,6 @@ export default function useLoadMore<Result = any, Item = any>(
   if (!incrementSize) {
     incrementSize = initPageSize;
   }
-=======
-  //初始化值
-  const { itemKey, initPageSize = 10, formatResult, ref, threshold = 100 } = options;
-  let { peerPageSize } = options;
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>();
@@ -80,7 +52,6 @@ export default function useLoadMore<Result = any, Item = any>(
 
   const [loading, setLoading] = useState<boolean>(false);
 
-<<<<<<< HEAD
   /* 控制重新执行 */
   const [count, setCount] = useState<number>(0);
 
@@ -91,17 +62,6 @@ export default function useLoadMore<Result = any, Item = any>(
   const startTime = useRef(new Date().getTime());
 
   /* id 模式下读取 Key */
-=======
-  // 控制重新执行
-  const [count, setCount] = useState<number>(0);
-
-  // 控制异步请求时序
-  const runCount = useRef(0);
-
-  // 开始的时间戳
-  const startTime = useRef(new Date().getTime());
-
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   const getItemKey = useCallback(
     (item: Item, index: number) => {
       const key =
@@ -118,55 +78,30 @@ export default function useLoadMore<Result = any, Item = any>(
 
     const params: FnParams = {
       page,
-<<<<<<< HEAD
       pageSize: (page === 1 ? initPageSize : incrementSize) as number,
-=======
-      pageSize: (page === 1 ? initPageSize : peerPageSize) as number,
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
       offset: data.length,
       startTime: startTime.current,
     };
 
-<<<<<<< HEAD
     /* id 模式需要增加最后一个 id */
     if (itemKey) {
       params.id = data.length > 0 ? getItemKey(data[data.length - 1], data.length - 1) : undefined;
     }
 
-=======
-    //
-    if (itemKey) {
-      params.id = data.length > 0 ? getItemKey(data[data.length - 1], data.length - 1) : undefined;
-    }
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
     fn(params).then((result: Result) => {
       if (currentCount !== runCount.current) {
         return;
       }
       setLoading(false);
-<<<<<<< HEAD
       /* 格式化 result */
-=======
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
       const { total: currentTotal, data: currentData } = (formatResult
         ? formatResult(result)
         : result) as any;
       setData(data.concat(currentData));
       setTotal(currentTotal);
     });
-<<<<<<< HEAD
   }, [page, initPageSize, incrementSize, data]);
 
-=======
-  }, [page, initPageSize, peerPageSize, data]);
-
-  const reload = useCallback(() => {
-    setPage(1);
-    setData([]);
-    startTime.current = new Date().getTime();
-    setCount(count + 1);
-  }, [count]);
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   const loadMore = useCallback(() => {
     if (total && data.length >= total) {
       return;
@@ -175,7 +110,6 @@ export default function useLoadMore<Result = any, Item = any>(
     setCount(count + 1);
   }, [page, count, data, total]);
 
-<<<<<<< HEAD
   const reload = useCallback(() => {
     setPage(1);
     setData([]);
@@ -184,9 +118,6 @@ export default function useLoadMore<Result = any, Item = any>(
   }, [count]);
 
   /* 上拉加载的方法 */
-=======
-  // 上拉加载的方法
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   const scrollMethod = useCallback(() => {
     if (loading || !ref || !ref.current) {
       return;
@@ -196,11 +127,7 @@ export default function useLoadMore<Result = any, Item = any>(
     }
   }, [loading, ref, loadMore]);
 
-<<<<<<< HEAD
   /* 如果有 ref，则会上拉加载更多 */
-=======
-  // 如果有ref, 则会上拉加载更多
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   useEffect(() => {
     if (!ref || !ref.current) {
       return () => {};
@@ -213,11 +140,7 @@ export default function useLoadMore<Result = any, Item = any>(
     };
   }, [scrollMethod]);
 
-<<<<<<< HEAD
   /* 只有初始化，或者 count 变化时，才会执行 run */
-=======
-  // 只有初始化 或者count变化的时候才会执行run
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   useEffect(() => {
     run();
     return () => {
@@ -225,11 +148,7 @@ export default function useLoadMore<Result = any, Item = any>(
     };
   }, [count]);
 
-<<<<<<< HEAD
   /* deps 变化后，重新 reload */
-=======
-  // deps变化后，重新reload
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
   useUpdateEffect(() => {
     reload();
   }, deps);

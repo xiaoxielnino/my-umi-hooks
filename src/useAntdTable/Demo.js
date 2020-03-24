@@ -102,16 +102,9 @@ const AppList = props => {
   const searchFrom = (
     <div style={{ marginBottom: 16 }}>
       <Form style={{ display: 'flex', justifyContent: 'flex-end' }}>
-<<<<<<< HEAD
         {getFieldDecorator('name', {})(
           <Input placeholder="enter name" style={{ width: 240, marginRight: 16 }} />,
         )}
-=======
-        {getFieldDecorator(
-          'name',
-          {},
-        )(<Input placeholder="enter name" style={{ width: 240, marginRight: 16 }} />)}
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         <Button type="primary" onClick={search}>
           搜索
         </Button>

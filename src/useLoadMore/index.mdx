@@ -1,10 +1,6 @@
 ---
 name: useLoadMore
 route: /useLoadMore
-<<<<<<< HEAD
-=======
-order: -1
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 sidebar: true
 ---
 
@@ -73,17 +69,13 @@ import { List, Button, Avatar } from 'antd';
 
       const { data, loading, loadingMore, reload, loadMore, total, noMore } = useLoadMore(asyncFn, [], {
         initPageSize: 3,
-<<<<<<< HEAD
         incrementSize: 4,
-=======
-        peerPageSize: 4,
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         formatResult: (result) => ({ total: result.total, data: result.data })
       });
 
       const renderFooter = () => {
         return (
-          <div>
+          <>
             {!noMore &&
               <Button
                 onClick={loadMore}
@@ -96,7 +88,7 @@ import { List, Button, Avatar } from 'antd';
             {noMore && <span>没有更多数据了</span>}
 
             <span style={{ float: 'right', fontSize: 12 }}>共有{total}条记录</span>
-          </div>
+          </>
         )
       }
 
@@ -111,11 +103,7 @@ import { List, Button, Avatar } from 'antd';
             renderItem={item => (
               <List.Item>
                 <List.Item.Meta
-<<<<<<< HEAD
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-=======
-                  avatar={<Avatar />}
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
                   title={<a>{item.title}</a>}
                   description="umijs/hooks is a react hooks library"
                 />
@@ -183,17 +171,13 @@ import { List, Button, Avatar } from 'antd';
       const containerRef = useRef();
       const { data, loading, loadingMore, reload, total, noMore } = useLoadMore(asyncFn, [], {
         initPageSize: 4,
-<<<<<<< HEAD
         incrementSize: 3,
-=======
-        peerPageSize: 3,
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         ref: containerRef
       });
 
       const renderFooter = () => {
         return (
-          <div>
+          <>
             {!noMore &&
               <Button
                 loading={loadingMore}
@@ -203,7 +187,7 @@ import { List, Button, Avatar } from 'antd';
             }
             {noMore && <span>没有更多数据了</span>}
             <span style={{ float: 'right', fontSize: 12 }}>共有{total}条记录</span>
-          </div>
+          </>
         )
       }
 
@@ -218,11 +202,7 @@ import { List, Button, Avatar } from 'antd';
             renderItem={item => (
               <List.Item>
                 <List.Item.Meta
-<<<<<<< HEAD
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-=======
-                  avatar={<Avatar  />}
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
                   title={<a>{item.title}</a>}
                   description="umijs/hooks is a react hooks library"
                 />
@@ -240,11 +220,7 @@ import { List, Button, Avatar } from 'antd';
 
 ## API
 
-<<<<<<< HEAD
 ```
-=======
-```js
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 const {
   loading: boolean,
   loadingMore: boolean,
@@ -256,19 +232,11 @@ const {
 } = useLoadMore(params);
 
 params:(
-<<<<<<< HEAD
   service: ({page, pageSize, offset, id, startTime}) => Promise<Result>,
   deps?: DependencyList = [],
   options?: {
     initPageSize?: number,
     incrementSize?: number,
-=======
-  fn: ({page, pageSize, offset, id, startTime}) => Promise<Result>,
-  deps?: DependencyList = [],
-  options?: {
-    initPageSize?: number,
-    peerPageSize?: number,
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
     itemKey?: string | ((record: Item, index: number) => string),
     formatResult?: (x: Result) => ({
       total: number,
@@ -282,7 +250,6 @@ params:(
 
 ### 结果
 
-<<<<<<< HEAD
 | 参数        | 说明               | 类型             | 默认值 |
 |-------------|--------------------|------------------|--------|
 | loading     | 是否第一次加载中   | boolean          | false  |
@@ -301,38 +268,14 @@ params:(
 | service | 请求数据的函数，函数参数见 Params       | (Params)=> Promise | -      |
 | deps    | 依赖数组，如果 deps 变化，会触发 reload | any[]              | []     |
 | options | 可选配置项，见 Options                  | -                  | -      |
-=======
-| 参数           | 说明                                   | 类型           | 默认值     |
-|----------------|----------------------------------------|----------------|------------|
-| loading        | 是否第一次加载中 |  boolean | false |
-| loadingMore    | 是否加载更多中    | boolean | false  |
-| data       | 全部列表数据      | any[]         | []          |
-| reload | 重新加载函数                       | () => void        | -      |
-| loadMore | 加载更多函数                       | () => void        | -      |
-| noMore | 是否没有更多数据了                       | boolean        | false      |
-| total | 数据总量                       | number\|undefined        | -      |
-
-### 参数
-
-| 参数           | 说明                                   | 类型           | 默认值     |
-|----------------|----------------------------------------|----------------|------------|
-| fn        | 请求数据的函数，函数参数见 Params |  (Params)=> Promise | - |
-| deps    | 依赖数组，如果 deps 变化，会触发 reload    | any[] | []  |
-| options    | 可选配置项，见 Options    | - | -  |
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 
 
 ### Params
 
 | 参数           | 说明                                   | 类型           | 默认值     |
 |----------------|----------------------------------------|----------------|------------|
-<<<<<<< HEAD
 | page    | 请求第几页数据，一般来说，如果你的 initPageSize 不等于 incrementSize，那 page 对你没有意义，你可以使用 offset     | number | -  |
 | pageSize    | 请求数据数量，第一页等于 initPageSize，非第一页等于 incrementSize | number | -  |
-=======
-| page    | 请求第几页数据，一般来说，如果你的 initPageSize 不等于 peerPageSize，那 page 对你没有意义，你可以使用 offset     | number | -  |
-| pageSize    | 请求数据数量，第一页等于 initPageSize，非第一页等于 peerPageSize | number | -  |
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 | offset    | 数据偏移量，也就是当前已经存在多少条数据了    | number | -  |
 | id    | 最后一条数据的 id，只有设置了 itemKey 后才会存在    | string | -  |
 | startTime    | 开始时间戳，第一次加载或每次 reload 时记录    | number | -  |
@@ -343,15 +286,9 @@ params:(
 | 参数           | 说明                                   | 类型           | 默认值     |
 |----------------|----------------------------------------|----------------|------------|
 | initPageSize    | 第一页的 pageSize    | number | 10  |
-<<<<<<< HEAD
 | incrementSize    | 非第一页的 pageSize，如果不设置，则等于 initPageSize    | number | -  |
 | itemKey    | 数据 id，可以是字符串或一个函数	    | `string | ((record: Item, index: number) => string)` | -  |
 | formatResult    | 格式化 service 请求结果     | `(x: Result) => ({ total: number, data: Item[]})` | -  |
-=======
-| peerPageSize    | 非第一页的 pageSize，如果不设置，则等于 initPageSize    | number | -  |
-| itemKey    | 数据 id，可以是字符串或一个函数	    | `string | ((record: Item, index: number) => string)` | -  |
-| formatResult    | 格式化 fn 请求结果     | `(x: Result) => ({ total: number, data: Item[]})` | -  |
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 | ref    | 容器的 ref，如果存在，则在滚动到底部时，自动触发 loadMore    | `RefObject<HTMLElement>` | -  |
 | threshold    | 下拉自动加载，距离底部距离阈值    | number | 100  |
 
@@ -362,10 +299,6 @@ params:(
 
 普通模式：数据不会更新，总数是固定的。这种场景我们就可以使用 Demo 中例子，使用 `page`，`pageSize`，`offset` 等直接向后端服务端请求数据。
 
-<<<<<<< HEAD
 id 模式：数据会一直更新，每个数据有唯一 id。我们去服务端请求数据时，应该是请求当前最后一条数据后面的 `pageSize` 条数据。这时候我们需要定义 `itemKey`，这样我们的 `service` 函数就可以拿到当前最后一条数据的 `id` 了。
-=======
-id 模式：数据会一直更新，每个数据有唯一 id。我们去服务端请求数据时，应该是请求当前最后一条数据后面的 `pageSize` 条数据。这时候我们需要定义 `itemKey`，这样我们的 `fn` 函数就可以拿到当前最后一条数据的 `id` 了。
->>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 
 timestamp 模式：数据更新频率不高，没有唯一 id。这种场景我们去服务器请求数据时，应该是请求 `startTime` 之前的数据。使用 `startTime`，`page`，`pageSize`，`offset` 即可准确定位数据。
