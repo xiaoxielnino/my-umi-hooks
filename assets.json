@@ -1,12 +1,11 @@
 {
-  "vendors.css": "/static/css/vendors.35d73e4ae0c8260f0087.css",
-  "vendors.js": "/static/js/vendors.0eef4951.js",
-  "app.js": "/static/js/app.35d73e4ae0c8260f0087.js",
-  "src-use-antd-table-index.js": "/static/js/src-use-antd-table-index.a5d061f7.js",
-  "src-use-api-index.js": "/static/js/src-use-api-index.3edcba6a.js",
-  "src-use-async-index.js": "/static/js/src-use-async-index.d6e02326.js",
-  "src-use-load-more-index.js": "/static/js/src-use-load-more-index.12964f6e.js",
-  "src-use-search-index.js": "/static/js/src-use-search-index.a1e06ae6.js",
-  "src-use-title-index.js": "/static/js/src-use-title-index.eb5d17a4.js",
-  "index.html": "/index.html"
+  "vendors.css": "/hooks/static/css/vendors.67acdde68f4f9e01f27a.css",
+  "vendors.js": "/hooks/static/js/vendors.22f02b89.js",
+  "app.js": "/hooks/static/js/app.67acdde68f4f9e01f27a.js",
+  "src-use-antd-table-index.js": "/hooks/static/js/src-use-antd-table-index.30a9f763.js",
+  "src-use-api-index.js": "/hooks/static/js/src-use-api-index.cb854b59.js",
+  "src-use-async-index.js": "/hooks/static/js/src-use-async-index.ede7bff0.js",
+  "src-use-load-more-index.js": "/hooks/static/js/src-use-load-more-index.e3c2de99.js",
+  "src-use-search-index.js": "/hooks/static/js/src-use-search-index.f848d4a5.js",
+  "index.html": "/hooks/index.html"
 }
