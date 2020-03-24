@@ -19,6 +19,16 @@ const options: IBundleOptions = {
     title: '@umijs/hooks',
     base: '/hooks/',
   },
+  extraBabelPlugins: [
+    [
+      'babel-plugin-import',
+      {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+      },
+    ],
+  ],
 };
 
 export default options;
