@@ -1,6 +1,10 @@
 ---
 name: useAsync
 route: /useAsync
+<<<<<<< HEAD
+=======
+order: -1
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 sidebar: true
 ---
 
@@ -12,12 +16,20 @@ import useAsync from './index';
 
 # useAsync
 
+<<<<<<< HEAD
 一个帮你管理异步函数的 Hook，支持立即执行，手动触发执行，轮询。
 
 ## 代码演示
 
 ### 立即执行
 
+=======
+React side-effect hook that helps you run async function
+
+## Usage
+
+### Run the async function when component load.
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 <Playground>
 {
   ()=>{
@@ -33,12 +45,19 @@ import useAsync from './index';
 
       return (
         <div>
+<<<<<<< HEAD
           <Spin spinning={loading}><div>id: {state}</div> <div>email: {email}</div></Spin>
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={run}>reload</Button>
             <Button onClick={cancel}>cancel</Button>
             <Button onClick={()=>set(c=>c+1)}>increase id</Button>
           </Button.Group>
+=======
+          <Spin spinning={loading}>id: {state}; email: {email}</Spin>
+          <Button onClick={run}>reload</Button>
+          <Button onClick={cancel}>cancel</Button>
+          <Button onClick={()=>set(c=>c+1)}>increase id</Button>
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         </div>
       )
     }
@@ -47,8 +66,12 @@ import useAsync from './index';
 }
 </Playground>
 
+<<<<<<< HEAD
 ### 手动触发执行
 
+=======
+### Run the async function with callback.
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 <Playground>
 {
   ()=>{
@@ -64,7 +87,11 @@ import useAsync from './index';
       return (
         <div>
           <Spin spinning={loading}>email: {email}</Spin>
+<<<<<<< HEAD
           <Button onClick={run} style={{marginTop: 16}}>fetch</Button>
+=======
+          <Button onClick={run}>fetch</Button>
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         </div>
       )
     }
@@ -73,8 +100,12 @@ import useAsync from './index';
 }
 </Playground>
 
+<<<<<<< HEAD
 ### 轮询
 
+=======
+### set a polling interval for async function.
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 <Playground>
 {
   ()=>{
@@ -90,12 +121,19 @@ import useAsync from './index';
       return (
         <div>
           <Spin spinning={loading}>email: {email}</Spin>
+<<<<<<< HEAD
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={run}>start polling</Button>
             <Button onClick={timer.pause}>pause</Button>
             <Button onClick={timer.stop}>stop</Button>
             <Button onClick={timer.resume}>resume</Button>
           </Button.Group>
+=======
+          <Button onClick={run}>start polling</Button>
+          <Button onClick={timer.pause}>pause</Button>
+          <Button onClick={timer.stop}>stop</Button>
+          <Button onClick={timer.resume}>resume</Button>
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
         </div>
       )
     }
@@ -104,9 +142,36 @@ import useAsync from './index';
 }
 </Playground>
 
+<<<<<<< HEAD
 ## API
 
 ```
+=======
+
+### Demo
+```js
+import { useAsync } from '@umijs/hooks';
+
+const Demo = () => {
+  const {data, loading} = useAsync(asyncFunc);
+
+  return loading ? ('loading...') : (<SomeComponent data={data}>)
+};
+```
+
+## Reference
+
+```js
+params:{
+  fn: (...args: Args | any) => Promise<Result>,
+  deps: DependencyList = [],
+  options: {
+    initExecute?: boolean; // 是否初始化执行
+    pollingInterval?: number; // 轮询的间隔毫秒
+  }
+}
+
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
 const {
   loading: boolean;
   error?: Error;
@@ -114,6 +179,7 @@ const {
   cancel: () => void;
   run: () => void;
   timer: {
+<<<<<<< HEAD
     stop: () => void;
     resume: () => void;
     pause: () => void;
@@ -158,3 +224,11 @@ params:(
 |-----------------|--------------------------------------------------------|---------|--------|
 | manual          | 是否需要手动触发                                       | boolean | false  |
 | pollingInterval | 轮询间隔毫秒，只有设置了 pollingInterval，才会开启轮询 | number  | -      |
+=======
+      stop: () => void;
+      resume: () => void;
+      pause: () => void;
+  };
+} = useAsync(params);
+```
+>>>>>>> 00dabf5cc44c8cc9f228c5eb881939ccb6ef2d17
