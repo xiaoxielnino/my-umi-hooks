@@ -1,0 +1,137 @@
+---
+name: useAsync
+route: /useAsync
+order: -1
+sidebar: true
+---
+
+import { Playground } from 'docz';
+import { useState, useMemo } from 'react';
+import { Button, Spin } from 'antd';
+import 'antd/es/select/style';
+import useAsync from './index';
+
+# useAsync
+
+React side-effect hook that helps you run async function
+
+## Usage
+
+### Run the async function when component load.
+<Playground>
+{
+  ()=>{
+
+    function getEmail(id){
+      return fetch(`https://randomuser.me/api?id=${id}`).then(res => res.json());
+    }
+
+    function Demo(){
+      const [ state, set ] = useState(0);
+      const { data, loading, cancel, run } = useAsync(()=>getEmail(state), [state])
+      const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
+
+      return (
+        <div>
+          <Spin spinning={loading}>id: {state}; email: {email}</Spin>
+          <Button onClick={run}>reload</Button>
+          <Button onClick={cancel}>cancel</Button>
+          <Button onClick={()=>set(c=>c+1)}>increase id</Button>
+        </div>
+      )
+    }
+    return <Demo />
+  }
+}
+</Playground>
+
+### Run the async function with callback.
+<Playground>
+{
+  ()=>{
+
+    function getEmail(){
+      return fetch(`https://randomuser.me/api`).then(res => res.json());
+    }
+
+    function Demo(){
+      const { data, loading, cancel, run } = useAsync(()=>getEmail(), [], {manual: true})
+      const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
+
+      return (
+        <div>
+          <Spin spinning={loading}>email: {email}</Spin>
+          <Button onClick={run}>fetch</Button>
+        </div>
+      )
+    }
+    return <Demo />
+  }
+}
+</Playground>
+
+### set a polling interval for async function.
+<Playground>
+{
+  ()=>{
+
+    function getEmail(){
+      return fetch(`https://randomuser.me/api`).then(res => res.json());
+    }
+
+    function Demo(){
+      const { data, loading, timer, run } = useAsync(()=>getEmail(), [], { manual: true, pollingInterval: 3000 })
+      const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
+
+      return (
+        <div>
+          <Spin spinning={loading}>email: {email}</Spin>
+          <Button onClick={run}>start polling</Button>
+          <Button onClick={timer.pause}>pause</Button>
+          <Button onClick={timer.stop}>stop</Button>
+          <Button onClick={timer.resume}>resume</Button>
+        </div>
+      )
+    }
+    return <Demo />
+  }
+}
+</Playground>
+
+
+### Demo
+```js
+import { useAsync } from '@umijs/hooks';
+
+const Demo = () => {
+  const {data, loading} = useAsync(asyncFunc);
+
+  return loading ? ('loading...') : (<SomeComponent data={data}>)
+};
+```
+
+## Reference
+
+```js
+params:{
+  fn: (...args: Args | any) => Promise<Result>,
+  deps: DependencyList = [],
+  options: {
+    initExecute?: boolean; // 是否初始化执行
+    pollingInterval?: number; // 轮询的间隔毫秒
+  }
+}
+
+const {
+  loading: boolean;
+  error?: Error;
+  data?: T;
+  cancel: () => void;
+  run: () => void;
+  timer: {
+      stop: () => void;
+      resume: () => void;
+      pause: () => void;
+  };
+} = useAsync(params);
+```
