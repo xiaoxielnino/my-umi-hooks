@@ -73,14 +73,14 @@ import useAPI from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-        <>
+        <div>
          <Spin spinning={loading}>email: {email}</Spin>
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={timer.pause}>pause</Button>
             <Button onClick={timer.stop}>stop</Button>
             <Button onClick={timer.resume}>resume</Button>
           </Button.Group>
-        </>
+        </div>
       )
     }
     return <Demo />
