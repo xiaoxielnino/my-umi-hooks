@@ -27,14 +27,14 @@ import useAPI from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-         <>
+         <div>
           <Spin spinning={loading}><div>id: {state}</div> <div>email: {email}</div></Spin>
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={run}>reload</Button>
             <Button onClick={cancel}>cancel</Button>
             <Button onClick={()=>set(c=>c+1)}>increase id</Button>
           </Button.Group>
-        </>
+        </div>
       )
     }
     return <Demo />
@@ -52,10 +52,10 @@ import useAPI from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-        <>
+        <div>
           <Spin spinning={loading}>email: {email}</Spin>
           <Button onClick={run} style={{marginTop: 16}}>fetch</Button>
-        </>
+        </div>
       )
     }
     return <Demo />

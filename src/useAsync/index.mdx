@@ -32,14 +32,14 @@ import useAsync from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-        <>
+        <div>
           <Spin spinning={loading}><div>id: {state}</div> <div>email: {email}</div></Spin>
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={run}>reload</Button>
             <Button onClick={cancel}>cancel</Button>
             <Button onClick={()=>set(c=>c+1)}>increase id</Button>
           </Button.Group>
-        </>
+        </div>
       )
     }
     return <Demo />
@@ -62,10 +62,10 @@ import useAsync from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-        <>
+        <div>
           <Spin spinning={loading}>email: {email}</Spin>
           <Button onClick={run} style={{marginTop: 16}}>fetch</Button>
-        </>
+        </div>
       )
     }
     return <Demo />
@@ -88,7 +88,7 @@ import useAsync from './index';
       const email = useMemo(()=>(((data||{}).results || [])[0] || {}).email, [data]);
 
       return (
-        <>
+        <div>
           <Spin spinning={loading}>email: {email}</Spin>
           <Button.Group style={{marginTop: 16}}>
             <Button onClick={run}>start polling</Button>
@@ -96,7 +96,7 @@ import useAsync from './index';
             <Button onClick={timer.stop}>stop</Button>
             <Button onClick={timer.resume}>resume</Button>
           </Button.Group>
-        </>
+        </div>
       )
     }
     return <Demo />

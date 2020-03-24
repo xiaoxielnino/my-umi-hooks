@@ -75,7 +75,7 @@ import { List, Button, Avatar } from 'antd';
 
       const renderFooter = () => {
         return (
-          <>
+          <div>
             {!noMore &&
               <Button
                 onClick={loadMore}
@@ -88,7 +88,7 @@ import { List, Button, Avatar } from 'antd';
             {noMore && <span>没有更多数据了</span>}
 
             <span style={{ float: 'right', fontSize: 12 }}>共有{total}条记录</span>
-          </>
+          </div>
         )
       }
 
@@ -177,7 +177,7 @@ import { List, Button, Avatar } from 'antd';
 
       const renderFooter = () => {
         return (
-          <>
+          <div>
             {!noMore &&
               <Button
                 loading={loadingMore}
@@ -187,7 +187,7 @@ import { List, Button, Avatar } from 'antd';
             }
             {noMore && <span>没有更多数据了</span>}
             <span style={{ float: 'right', fontSize: 12 }}>共有{total}条记录</span>
-          </>
+          </div>
         )
       }
 
